@@ -1,16 +1,15 @@
-name: The first workflows
+name: The third workflows
 on: push
-jobs: 
-    echo:
-        runs-on: ubuntu-latest
-        steps:
-            - run: echo 'Hello, Everyone!'
-    pwd-ls:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Print working directory
-              run: pwd
-            - name: list files
-              run: |
-                  cd ~
-                  ls -al
+jobs:
+  checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: list all
+        run: ls -al
+      - uses: actions/checkout@v3
+        with:
+          path: sources
+      - name: list all again
+        run: |
+          ls -al
+          cat .github/workflows/first.yml
